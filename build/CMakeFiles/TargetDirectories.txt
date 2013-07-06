@@ -1,0 +1,6 @@
+/media/d/ubuntuWorkspace/workspace/compressStatic/build/CMakeFiles/httpURL.dir
+/media/d/ubuntuWorkspace/workspace/compressStatic/build/CMakeFiles/loadCSS.dir
+/media/d/ubuntuWorkspace/workspace/compressStatic/build/CMakeFiles/target/fopen.dir
+/media/d/ubuntuWorkspace/workspace/compressStatic/build/CMakeFiles/target/readCSS.dir
+/media/d/ubuntuWorkspace/workspace/compressStatic/build/CMakeFiles/target/readConfig.dir
+/media/d/ubuntuWorkspace/workspace/compressStatic/build/CMakeFiles/target/testURL.dir

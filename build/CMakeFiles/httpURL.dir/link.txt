@@ -1,0 +1,2 @@
+/usr/bin/ar cr lib/libhttpURL.a  CMakeFiles/httpURL.dir/css/httpURL.c.o
+/usr/bin/ranlib lib/libhttpURL.a

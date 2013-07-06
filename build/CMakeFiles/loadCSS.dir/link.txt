@@ -1,0 +1,2 @@
+/usr/bin/ar cr lib/libloadCSS.a  CMakeFiles/loadCSS.dir/css/loadCSS.c.o
+/usr/bin/ranlib lib/libloadCSS.a

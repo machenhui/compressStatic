@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/media/d/ubuntuWorkspace/workspace/compressStatic/src/js/readConfig.c
+json/json.h
+-
+json/json_object_private.h
+-
+stdio.h
+-
+stdlib.h
+-
+string.h
+-
+
