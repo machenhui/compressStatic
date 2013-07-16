@@ -31,6 +31,9 @@ CMAKE_COMMAND = /usr/bin/cmake
 # The command to remove a file.
 RM = /usr/bin/cmake -E remove -f
 
+# Escaping for special characters.
+EQUALS = =
+
 # The program to use to edit the cache.
 CMAKE_EDIT_COMMAND = /usr/bin/cmake-gui
 
@@ -80,8 +83,8 @@ target/testURL_OBJECTS = \
 target/testURL_EXTERNAL_OBJECTS =
 
 target/testURL: CMakeFiles/target/testURL.dir/css/testURL.c.o
-target/testURL: lib/libhttpURL.a
 target/testURL: CMakeFiles/target/testURL.dir/build.make
+target/testURL: lib/libhttpURL.a
 target/testURL: CMakeFiles/target/testURL.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --red --bold "Linking C executable target/testURL"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/target/testURL.dir/link.txt --verbose=$(VERBOSE)

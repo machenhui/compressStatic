@@ -31,6 +31,9 @@ CMAKE_COMMAND = /usr/bin/cmake
 # The command to remove a file.
 RM = /usr/bin/cmake -E remove -f
 
+# Escaping for special characters.
+EQUALS = =
+
 # The program to use to edit the cache.
 CMAKE_EDIT_COMMAND = /usr/bin/cmake-gui
 
@@ -80,9 +83,9 @@ target/readCSS_OBJECTS = \
 target/readCSS_EXTERNAL_OBJECTS =
 
 target/readCSS: CMakeFiles/target/readCSS.dir/css/readCSS.c.o
+target/readCSS: CMakeFiles/target/readCSS.dir/build.make
 target/readCSS: lib/libloadCSS.a
 target/readCSS: lib/libhttpURL.a
-target/readCSS: CMakeFiles/target/readCSS.dir/build.make
 target/readCSS: CMakeFiles/target/readCSS.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --red --bold "Linking C executable target/readCSS"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/target/readCSS.dir/link.txt --verbose=$(VERBOSE)
