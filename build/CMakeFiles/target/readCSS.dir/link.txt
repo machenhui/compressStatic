@@ -1,1 +1,0 @@
-/usr/bin/gcc  --std=c99 -g    CMakeFiles/target/readCSS.dir/css/readCSS.c.o  -o target/readCSS -rdynamic lib/libloadCSS.a lib/libhttpURL.a -lcrypto -lcurl 

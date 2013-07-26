@@ -1,1 +1,0 @@
-/usr/bin/gcc  --std=c99 -g    CMakeFiles/target/fopen.dir/css/fopen.c.o  -o target/fopen -rdynamic -lcurl 
