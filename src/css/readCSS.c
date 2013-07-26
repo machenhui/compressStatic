@@ -202,7 +202,7 @@ void callClosureStyleSheet(char *fileName,char *outPutPath){
 int main(int argc,char** argv){
 	char filePath[100];
 	char outPutFile[2000];
-	char *fileURL = "http://s2.120ji.com/css/main.css";
+	char *fileURL = argv[1];
 	char *currentBuffer = malloc(1024*8*1024);
 	wgetFile(fileURL,filePath,currentBuffer);
 	//printf("%s\n",currentBuffer);

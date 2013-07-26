@@ -1,6 +1,6 @@
 {
   "name": "Brian",
-  "basePath":"/media/d/ubuntuWorkspace/workspace/quadmanager/src/main/webapp/javascript/",
-  "files":["core/Loader.js", "quadManager/Main.js", "quadManager/Login.js", "module/DOM.js", "quadManager/Mgr.js", "quadManager/Chat.js", "quadManager/Message.js", "quadManager/PushMessage.js", "quadManager/BatUser.js", "quadManager/WatchUser.js", "net/XHR2.js", "quadManager/Dialog.js", "quadManager/TableUpdate.js", "core/Extend.js"],
+  "basePath":"/media/d/ubuntuWorkspace/workspace/quad-manage/trunk/quadmanager/src/main/webapp/javascript/",
+  "files":["core/Loader.js", "quadManager/Main.js", "quadManager/Login.js", "module/DOM.js", "quadManager/Mgr.js", "quadManager/Chat.js", "quadManager/Message.js", "quadManager/PushMessage.js", "quadManager/BatUser.js", "quadManager/WatchUser.js", "quadManager/QuadTeamChat.js", "net/XHR2.js", "quadManager/Dialog.js", "quadManager/TableUpdate.js", "core/Extend.js"],
   "outputFile":"target/min.loader.js"
 }
