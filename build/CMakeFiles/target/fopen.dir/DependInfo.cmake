@@ -4,7 +4,7 @@ SET(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 SET(CMAKE_DEPENDS_CHECK_C
-  "/media/d/ubuntuWorkspace/workspace/compressStatic/src/css/fopen.c" "/media/d/ubuntuWorkspace/workspace/compressStatic/build/CMakeFiles/target/fopen.dir/css/fopen.c.o"
+  "/home/machenhui/workspace/compressStatic/src/css/fopen.c" "/home/machenhui/workspace/compressStatic/build/CMakeFiles/target/fopen.dir/css/fopen.c.o"
   )
 SET(CMAKE_C_COMPILER_ID "GNU")
 

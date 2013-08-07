@@ -4,13 +4,13 @@ SET(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 SET(CMAKE_DEPENDS_CHECK_C
-  "/media/d/ubuntuWorkspace/workspace/compressStatic/src/css/testURL.c" "/media/d/ubuntuWorkspace/workspace/compressStatic/build/CMakeFiles/target/testURL.dir/css/testURL.c.o"
+  "/home/machenhui/workspace/compressStatic/src/css/testURL.c" "/home/machenhui/workspace/compressStatic/build/CMakeFiles/target/testURL.dir/css/testURL.c.o"
   )
 SET(CMAKE_C_COMPILER_ID "GNU")
 
 # Targets to which this target links.
 SET(CMAKE_TARGET_LINKED_INFO_FILES
-  "/media/d/ubuntuWorkspace/workspace/compressStatic/build/CMakeFiles/httpURL.dir/DependInfo.cmake"
+  "/home/machenhui/workspace/compressStatic/build/CMakeFiles/httpURL.dir/DependInfo.cmake"
   )
 
 # The include file search paths:

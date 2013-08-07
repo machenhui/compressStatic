@@ -4,7 +4,7 @@ SET(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 SET(CMAKE_DEPENDS_CHECK_C
-  "/media/d/ubuntuWorkspace/workspace/compressStatic/src/css/loadCSS.c" "/media/d/ubuntuWorkspace/workspace/compressStatic/build/CMakeFiles/loadCSS.dir/css/loadCSS.c.o"
+  "/home/machenhui/workspace/compressStatic/src/css/loadCSS.c" "/home/machenhui/workspace/compressStatic/build/CMakeFiles/loadCSS.dir/css/loadCSS.c.o"
   )
 SET(CMAKE_C_COMPILER_ID "GNU")
 

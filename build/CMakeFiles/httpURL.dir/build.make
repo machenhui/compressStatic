@@ -34,14 +34,11 @@ RM = /usr/bin/cmake -E remove -f
 # Escaping for special characters.
 EQUALS = =
 
-# The program to use to edit the cache.
-CMAKE_EDIT_COMMAND = /usr/bin/cmake-gui
-
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /media/d/ubuntuWorkspace/workspace/compressStatic/src
+CMAKE_SOURCE_DIR = /home/machenhui/workspace/compressStatic/src
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /media/d/ubuntuWorkspace/workspace/compressStatic/build
+CMAKE_BINARY_DIR = /home/machenhui/workspace/compressStatic/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/httpURL.dir/depend.make
@@ -53,18 +50,18 @@ include CMakeFiles/httpURL.dir/progress.make
 include CMakeFiles/httpURL.dir/flags.make
 
 CMakeFiles/httpURL.dir/css/httpURL.c.o: CMakeFiles/httpURL.dir/flags.make
-CMakeFiles/httpURL.dir/css/httpURL.c.o: /media/d/ubuntuWorkspace/workspace/compressStatic/src/css/httpURL.c
-	$(CMAKE_COMMAND) -E cmake_progress_report /media/d/ubuntuWorkspace/workspace/compressStatic/build/CMakeFiles $(CMAKE_PROGRESS_1)
+CMakeFiles/httpURL.dir/css/httpURL.c.o: /home/machenhui/workspace/compressStatic/src/css/httpURL.c
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/machenhui/workspace/compressStatic/build/CMakeFiles $(CMAKE_PROGRESS_1)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building C object CMakeFiles/httpURL.dir/css/httpURL.c.o"
-	/usr/bin/gcc  $(C_DEFINES) $(C_FLAGS) -o CMakeFiles/httpURL.dir/css/httpURL.c.o   -c /media/d/ubuntuWorkspace/workspace/compressStatic/src/css/httpURL.c
+	/usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -o CMakeFiles/httpURL.dir/css/httpURL.c.o   -c /home/machenhui/workspace/compressStatic/src/css/httpURL.c
 
 CMakeFiles/httpURL.dir/css/httpURL.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/httpURL.dir/css/httpURL.c.i"
-	/usr/bin/gcc  $(C_DEFINES) $(C_FLAGS) -E /media/d/ubuntuWorkspace/workspace/compressStatic/src/css/httpURL.c > CMakeFiles/httpURL.dir/css/httpURL.c.i
+	/usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -E /home/machenhui/workspace/compressStatic/src/css/httpURL.c > CMakeFiles/httpURL.dir/css/httpURL.c.i
 
 CMakeFiles/httpURL.dir/css/httpURL.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/httpURL.dir/css/httpURL.c.s"
-	/usr/bin/gcc  $(C_DEFINES) $(C_FLAGS) -S /media/d/ubuntuWorkspace/workspace/compressStatic/src/css/httpURL.c -o CMakeFiles/httpURL.dir/css/httpURL.c.s
+	/usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -S /home/machenhui/workspace/compressStatic/src/css/httpURL.c -o CMakeFiles/httpURL.dir/css/httpURL.c.s
 
 CMakeFiles/httpURL.dir/css/httpURL.c.o.requires:
 .PHONY : CMakeFiles/httpURL.dir/css/httpURL.c.o.requires
@@ -101,6 +98,6 @@ CMakeFiles/httpURL.dir/clean:
 .PHONY : CMakeFiles/httpURL.dir/clean
 
 CMakeFiles/httpURL.dir/depend:
-	cd /media/d/ubuntuWorkspace/workspace/compressStatic/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /media/d/ubuntuWorkspace/workspace/compressStatic/src /media/d/ubuntuWorkspace/workspace/compressStatic/src /media/d/ubuntuWorkspace/workspace/compressStatic/build /media/d/ubuntuWorkspace/workspace/compressStatic/build /media/d/ubuntuWorkspace/workspace/compressStatic/build/CMakeFiles/httpURL.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/machenhui/workspace/compressStatic/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/machenhui/workspace/compressStatic/src /home/machenhui/workspace/compressStatic/src /home/machenhui/workspace/compressStatic/build /home/machenhui/workspace/compressStatic/build /home/machenhui/workspace/compressStatic/build/CMakeFiles/httpURL.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/httpURL.dir/depend
 

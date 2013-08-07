@@ -4,7 +4,7 @@ SET(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 SET(CMAKE_DEPENDS_CHECK_C
-  "/media/d/ubuntuWorkspace/workspace/compressStatic/src/css/httpURL.c" "/media/d/ubuntuWorkspace/workspace/compressStatic/build/CMakeFiles/httpURL.dir/css/httpURL.c.o"
+  "/home/machenhui/workspace/compressStatic/src/css/httpURL.c" "/home/machenhui/workspace/compressStatic/build/CMakeFiles/httpURL.dir/css/httpURL.c.o"
   )
 SET(CMAKE_C_COMPILER_ID "GNU")
 
