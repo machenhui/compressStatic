@@ -129,7 +129,7 @@ const char** getImportFiles(const char *fileURL,const char* fileName,char *outPu
 }
 //返回开始的位置
 int  getCSSPath(const char *line){
-	regex_t regex;
+		regex_t regex;
 		int reti;
 		char msgbuf[100];
 		regmatch_t pmatch[20];
@@ -160,6 +160,18 @@ int  getCSSPath(const char *line){
 
 		return -1;
 }
+/**
+ * 找到对应文件种的url();解析其中的路径，并将其转化成绝对地址
+ * 1.正则匹配url(images/bb.png);
+ * 2.判断其路径时相对路径，还是绝对路径
+ * 		http:// 开头 /image 开头的，都是绝对路径，不用转化
+ * 		images/bb.png ../ 两种类型的都是相对路径
+ * 3.替换该字符串
+ */
+int getURLPath(){
+	return 0;
+}
+
 //返回css文件地址
 const char* hasImport(const char* line){
 	regex_t regex;
@@ -211,9 +223,15 @@ void callClosureStyleSheet(char *fileName,char *outPutPath){
 	strcat(cmd,outPutPath);
 	printf("cmd %s\n",cmd);
 	system(cmd);
+	free(cmd);
 }
 
 int main(int argc,char** argv){
+	if(argc < 2){
+		perror("缺少参数，参数1 为文件地址，参数2 为输出文件地址");
+		perror("css 文件中的图片地址会修改为以参考输出文件地址的相对路径");
+		return -1;
+	}
 	char filePath[100];
 	char outPutFile[2000];
 	char *fileURL = argv[1];
