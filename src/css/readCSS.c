@@ -211,7 +211,7 @@ const char* hasImport(const char* line){
 	return NULL;
 }
 
-void callClosureStyleSheet(char *fileName,char *outPutPath){
+void callClosureStyleSheet(char *fileName,char *outPutPath,char *outPutRenameMap){
 	char *cmd = malloc(10000);
 	strcpy(cmd,"java -jar ../lib/closure-stylesheets.jar ");
 	strcat(cmd,fileName);
@@ -221,6 +221,11 @@ void callClosureStyleSheet(char *fileName,char *outPutPath){
 	strcat(cmd,"-webkit-text-shadow ");
 	strcat(cmd," --output-file ");
 	strcat(cmd,outPutPath);
+	if(outPutRenameMap != NULL){
+		strcat(cmd," --rename CLOSURE");
+		strcat(cmd," --output-renaming-map ");
+		strcat(cmd,outPutRenameMap);
+	}
 	printf("cmd %s\n",cmd);
 	system(cmd);
 	free(cmd);
@@ -248,7 +253,11 @@ int main(int argc,char** argv){
 	if(argc >=3){
 		outputFilePath = argv[2];
 	}
-	callClosureStyleSheet(outPutFile,outputFilePath);
+	char *outPutRenameMap;
+	if(argc >=4){
+		outPutRenameMap = argv[3];
+	}
+	callClosureStyleSheet(outPutFile,outputFilePath,outPutRenameMap);
 	//对生成的文件，做closure-stylesheet的压缩
 
 }
