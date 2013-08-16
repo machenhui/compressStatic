@@ -227,7 +227,7 @@ void callClosureStyleSheet(char *fileName,char *outPutPath){
 }
 
 int main(int argc,char** argv){
-	if(argc < 2){
+	if(argc < 3){
 		perror("缺少参数，参数1 为文件地址，参数2 为输出文件地址");
 		perror("css 文件中的图片地址会修改为以参考输出文件地址的相对路径");
 		return -1;
@@ -243,7 +243,12 @@ int main(int argc,char** argv){
 	printf("文件名%s\n",outPutFile);
 	//printf("文件名%s\n",fileName);
 	//getImportFiles("/tmp/compress/http___s2.120ji.com_css_main.css");
-	callClosureStyleSheet(outPutFile,"target/min.merge.css");
+
+	char *outputFilePath = "target/min.merge.css";
+	if(argc >=3){
+		outputFilePath = argv[2];
+	}
+	callClosureStyleSheet(outPutFile,outputFilePath);
 	//对生成的文件，做closure-stylesheet的压缩
 
 }
