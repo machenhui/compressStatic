@@ -64,7 +64,7 @@ char* __transPath(char *rootPath,char *importPath){
 
 	reti = regexec(&regex, importPath, 20, pmatch, 0);
 	if (!reti) {
-		reti = regcomp(&regex, "/[^/]*$",
+		reti = regcomp(&regex, "/[^/]*/[^/]*$",
 				REG_ICASE | REG_NEWLINE | REG_EXTENDED);
 		if (reti) {
 			perror("could not compiler ");
@@ -74,11 +74,11 @@ char* __transPath(char *rootPath,char *importPath){
 		reti = regexec(&regex, rootPath, 20, pmatch1, REG_NOTBOL);
 
 		regmatch_t lastmatch = pmatch1[0];
-		char *rs = malloc(lastmatch.rm_so + 1);
-		strncpy(rs, rootPath, lastmatch.rm_so);
-		rs[lastmatch.rm_so] = '\0';
-		//printf("相对路径%s\t%s\t%d\n",rs,importPath+pmatch[0].rm_eo-1,pmatch[0].rm_eo);
-		return __transPath(rs, importPath+pmatch[0].rm_eo-1);
+		char *rs = malloc(lastmatch.rm_so + 2);
+		strncpy(rs, rootPath, lastmatch.rm_so +1);
+		rs[lastmatch.rm_so+1] = '\0';
+		//printf("相对路径%s\t%s\t%d\n",rs,importPath+pmatch[0].rm_eo,pmatch[0].rm_eo);
+		return __transPath(rs, importPath+pmatch[0].rm_eo);
 	}else if (reti == REG_NOMATCH) {
 		char *rss =  malloc(strlen(rootPath)+strlen(importPath));
 

@@ -45,7 +45,8 @@ const char** getImportFiles(const char *fileURL,const char* fileName,char *outPu
 	char *outPutFileName = malloc(strlen(fileName)+strlen(mergeFileName)+2);
 	strcpy(outPutFileName,fileName);
 	strcat(outPutFileName,mergeFileName);
-	int outPutFileDes = open(outPutFileName,O_CREAT|O_WRONLY,S_IRWXU);
+	//int outPutFileDes = open(outPutFileName,O_CREAT|O_WRONLY,S_IRWXU);
+	int outPutFileDes = creat(outPutFileName,O_CREAT|O_WRONLY);
 	//FILE *outPutFile = fopen(outPutFileName,"w+");
 
 	HTTP_URL *url = malloc(sizeof(HTTP_URL));
@@ -69,8 +70,11 @@ const char** getImportFiles(const char *fileURL,const char* fileName,char *outPu
 		perror("malloc 异常");
 		exit(-1);
 	}
+
+	char *contentBuffer = malloc(5*1024*1024);
 	for(;buf!=NULL;){
-		buf = fgets(buf,BUFFIZE,file);
+		memset(buf,'\0',BUFFIZE*sizeof(char));
+		buf = fgets(buf,BUFFIZE*sizeof(char),file);
 
 		if(buf != NULL){
 
@@ -78,17 +82,26 @@ const char** getImportFiles(const char *fileURL,const char* fileName,char *outPu
 
 			if (cssPath != NULL ) {
 				char *cssPath1 = malloc(strlen(cssPath));
+				memset(cssPath1,'\0',strlen(cssPath));
 				strcpy(cssPath1, cssPath);
+				printf("----%s===%s\n",cssPath1,cssPath);
 				char *rs = getHTTPPath(cssPath1, url);
 
-				char *contentBuffer = malloc(1024*2*1024);
+				//char *contentBuffer = malloc(5*1024*1024);
+				fsync(outPutFileDes);
+
+				memset(contentBuffer,'\0',5*1024*1024);
+
 				wgetFile(rs,NULL,contentBuffer);
 				//fputs(contentBuffer,outPutFile);
+				printf("长度：%d\n",strlen(contentBuffer));
 				write(outPutFileDes,contentBuffer,strlen(contentBuffer));
 				write(outPutFileDes,"\n",1);
-				//memset(contentBuffer,strlen(contentBuffer),sizeof(char));
+				//memset(contentBuffer,'\0',strlen(contentBuffer));
 				printf("%s\t%s\n", cssPath1, rs);
-				free(cssPath1);
+				//free(cssPath1);
+				//fsync(outPutFileDes);
+				//free(contentBuffer);
 			}else{
 				//fputs(buf,outPutFile);
 
@@ -153,6 +166,7 @@ const char* hasImport(const char* line){
 	int reti;
 	char msgbuf[100];
 	regmatch_t pmatch[20];
+	printf("===%s===\n",line);
 	/* Compile regular expression */
 	reti = regcomp(&regex, "@import\\s+url\\(.+\\)", REG_ICASE|REG_NEWLINE|REG_EXTENDED);
 	if (reti) {

@@ -1,6 +1,8 @@
 {
   "name": "Brian",
-  "basePath":"/home/machenhui/workspace/wz/0/demo/demo/",
-  "files":["template/template.js"],
-  "outputFile":"template/min.template.js"
+  "basePath":"/home/machenhui/workspace/wz/0/test/Compiler/build/target/noCompile/",
+  "files":["../../../demo/xnConfig.js", "../demo/demo.js","../../../js/core/Loader.js"],
+  "outputFile":"../../min/min.loader.js",
+  "externs":"../../../../../demo/template/externsTemplate.js",
+  "sourceMapPath":"../../min/sourceMap.js"
 }

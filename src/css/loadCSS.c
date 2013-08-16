@@ -35,9 +35,16 @@ void replaceURL(char* input){
 	}
 }
 
+char *cmd;
+char *rsStr;
 void wgetFile(const char* fileName,char *filePath,char *contentBuffer){
 	mkdir("/tmp/compress",(S_IRUSR|S_IWUSR|S_IXUSR));
-	char *cmd = malloc(10000*sizeof(char));
+	if(cmd == NULL){
+		cmd = malloc(10000*sizeof(char));
+	}else{
+		memset(cmd,'\0',10000);
+	}
+
     strcat(cmd,"wget ");
     strcat(cmd,fileName);
     strcat(cmd," -O ");
@@ -49,7 +56,12 @@ void wgetFile(const char* fileName,char *filePath,char *contentBuffer){
     //strcat(cmd,getMD5(fileName));
     /*printf("cmd :: %s \n",cmd);
     int rs = system(cmd);*/
-    char *rsStr = malloc(10000*sizeof(char));
+    if(rsStr == NULL){
+    	rsStr = malloc(10000*sizeof(char));
+    }else{
+    	memset(rsStr,'\0',10000);
+    }
+
     strcat(rsStr,"/tmp/compress/");
     strcat(rsStr,fileNameTmp);
     if(filePath != NULL)
@@ -94,13 +106,17 @@ static size_t write_callback(char *buffer,
   return size;
 }
 
+CURL *curl;
+CURLcode res;
 //给指定的url，将下载的文件，保存到指定的位置
 void curlGetFile(const char* fileURL,char *filePath,char *contentBuffer){
-	CURL *curl;
-	CURLcode res;
 
-	curl = curl_easy_init();
+	if(curl == NULL){
+		curl = curl_easy_init();
+	}
+
 	if (curl) {
+		printf("===%s\n",fileURL);
 		curl_easy_setopt(curl, CURLOPT_URL, fileURL);
 		/* example.com is redirected, so we tell libcurl to follow redirection */
 		curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
@@ -152,11 +168,19 @@ void curlGetFile(const char* fileURL,char *filePath,char *contentBuffer){
        // }
 
 		/* always cleanup */
-		curl_easy_cleanup(curl);
+		//curl_easy_cleanup(curl);
 		free(file);
 	}
 
 }
+
+void cleanup(){
+	if(curl != NULL){
+		curl_easy_cleanup(curl);
+	}
+
+}
+
 const char* getMD5(const char* key){
 	MD5_CTX ctx;
 

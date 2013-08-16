@@ -26,7 +26,7 @@ const char* transToCommand(struct array_list *ja,const char* basePath){
 
 	return rs;
 }
-const char* getCommadStr(const char *prefix,const char* jsstr,const char* outputFile,const char *externs){
+const char* getCommadStr(const char *prefix,const char* jsstr,const char* outputFile,const char *externs,const char *sourceMapPath){
 	char *rs = malloc(10000*sizeof(char));
 	memset(rs,0,strlen(rs));
 	strcat(rs,prefix);
@@ -40,6 +40,9 @@ const char* getCommadStr(const char *prefix,const char* jsstr,const char* output
       strcat(rs," --externs ");
 	  strcat(rs,externs);
     }
+	strcat(rs," --source_map_format V3 ");
+	strcat(rs," --create_source_map ");
+	strcat(rs,sourceMapPath);
 	return rs;
 }
 
@@ -66,6 +69,15 @@ int main(int argc, char** argv){
 	strcat(externs1,basePath);
 	strcat(externs1,externs);
 
+	//获取sourceMapPath
+	struct json_object *jbSourceMap = json_object_object_get(jb, "sourceMapPath");
+	const char *sourceMapPath = json_object_get_string(jbSourceMap);
+	char *sourceMapPath1 = malloc(1000 * sizeof(char));
+	memset(sourceMapPath1, 0, strlen(sourceMapPath1));
+	strcat(sourceMapPath1, basePath);
+	strcat(sourceMapPath1, sourceMapPath);
+	printf("命令行 %s\n",sourceMapPath1);
+
 	//获取js 文件数组
 	struct json_object *jsFiles = json_object_object_get(jb,"files");
 	struct array_list *ja = json_object_get_array(jsFiles);
@@ -73,8 +85,8 @@ int main(int argc, char** argv){
 	printf("命令行 %s\n",cmd);
 
 	//system("java -version");
-    printf("\n\n%s\n",getCommadStr("java -jar ../lib/compilerJS.jar ",cmd,outputFile,externs1));
-	system(getCommadStr("java -jar ../lib/compilerJS.jar ",cmd,outputFile,externs1));
+    printf("\n\n%s\n",getCommadStr("java -jar ../lib/compilerJS.jar ",cmd,outputFile,externs1,sourceMapPath1));
+	system(getCommadStr("java -jar ../lib/compilerJS.jar ",cmd,outputFile,externs1,sourceMapPath1));
 
 
 	return 0;
