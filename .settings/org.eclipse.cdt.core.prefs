@@ -1,0 +1,9 @@
+eclipse.preferences.version=1
+environment/project/org.eclipse.linuxtools.cdt.autotools.core.configuration.build.1222445898/CPP_INCLUDE_PATH/delimiter=\:
+environment/project/org.eclipse.linuxtools.cdt.autotools.core.configuration.build.1222445898/CPP_INCLUDE_PATH/operation=append
+environment/project/org.eclipse.linuxtools.cdt.autotools.core.configuration.build.1222445898/CPP_INCLUDE_PATH/value=/usr/include/c++/4.8.1
+environment/project/org.eclipse.linuxtools.cdt.autotools.core.configuration.build.1222445898/C_INCLUDE_PATH/delimiter=\:
+environment/project/org.eclipse.linuxtools.cdt.autotools.core.configuration.build.1222445898/C_INCLUDE_PATH/operation=append
+environment/project/org.eclipse.linuxtools.cdt.autotools.core.configuration.build.1222445898/C_INCLUDE_PATH/value=/usr/include
+environment/project/org.eclipse.linuxtools.cdt.autotools.core.configuration.build.1222445898/append=true
+environment/project/org.eclipse.linuxtools.cdt.autotools.core.configuration.build.1222445898/appendContributed=true

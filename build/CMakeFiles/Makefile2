@@ -123,13 +123,48 @@ clean: CMakeFiles/loadCSS.dir/clean
 .PHONY : clean
 
 #=============================================================================
+# Target rules for target CMakeFiles/target/auto.dir
+
+# All Build rule for target.
+CMakeFiles/target/auto.dir/all:
+	$(MAKE) -f CMakeFiles/target/auto.dir/build.make CMakeFiles/target/auto.dir/depend
+	$(MAKE) -f CMakeFiles/target/auto.dir/build.make CMakeFiles/target/auto.dir/build
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/machenhui/workspace/compressStatic/build/CMakeFiles  3
+	@echo "Built target target/auto"
+.PHONY : CMakeFiles/target/auto.dir/all
+
+# Include target in all.
+all: CMakeFiles/target/auto.dir/all
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/target/auto.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/machenhui/workspace/compressStatic/build/CMakeFiles 1
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/target/auto.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/machenhui/workspace/compressStatic/build/CMakeFiles 0
+.PHONY : CMakeFiles/target/auto.dir/rule
+
+# Convenience name for target.
+target/auto: CMakeFiles/target/auto.dir/rule
+.PHONY : target/auto
+
+# clean rule for target.
+CMakeFiles/target/auto.dir/clean:
+	$(MAKE) -f CMakeFiles/target/auto.dir/build.make CMakeFiles/target/auto.dir/clean
+.PHONY : CMakeFiles/target/auto.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/target/auto.dir/clean
+.PHONY : clean
+
+#=============================================================================
 # Target rules for target CMakeFiles/target/fopen.dir
 
 # All Build rule for target.
 CMakeFiles/target/fopen.dir/all:
 	$(MAKE) -f CMakeFiles/target/fopen.dir/build.make CMakeFiles/target/fopen.dir/depend
 	$(MAKE) -f CMakeFiles/target/fopen.dir/build.make CMakeFiles/target/fopen.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/machenhui/workspace/compressStatic/build/CMakeFiles  3
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/machenhui/workspace/compressStatic/build/CMakeFiles  4
 	@echo "Built target target/fopen"
 .PHONY : CMakeFiles/target/fopen.dir/all
 
@@ -165,7 +200,7 @@ CMakeFiles/target/readCSS.dir/all: CMakeFiles/loadCSS.dir/all
 CMakeFiles/target/readCSS.dir/all: CMakeFiles/httpURL.dir/all
 	$(MAKE) -f CMakeFiles/target/readCSS.dir/build.make CMakeFiles/target/readCSS.dir/depend
 	$(MAKE) -f CMakeFiles/target/readCSS.dir/build.make CMakeFiles/target/readCSS.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/machenhui/workspace/compressStatic/build/CMakeFiles  4
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/machenhui/workspace/compressStatic/build/CMakeFiles  5
 	@echo "Built target target/readCSS"
 .PHONY : CMakeFiles/target/readCSS.dir/all
 
@@ -200,7 +235,7 @@ clean: CMakeFiles/target/readCSS.dir/clean
 CMakeFiles/target/readConfig.dir/all:
 	$(MAKE) -f CMakeFiles/target/readConfig.dir/build.make CMakeFiles/target/readConfig.dir/depend
 	$(MAKE) -f CMakeFiles/target/readConfig.dir/build.make CMakeFiles/target/readConfig.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/machenhui/workspace/compressStatic/build/CMakeFiles  5
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/machenhui/workspace/compressStatic/build/CMakeFiles  6
 	@echo "Built target target/readConfig"
 .PHONY : CMakeFiles/target/readConfig.dir/all
 
@@ -235,7 +270,7 @@ clean: CMakeFiles/target/readConfig.dir/clean
 CMakeFiles/target/testURL.dir/all: CMakeFiles/httpURL.dir/all
 	$(MAKE) -f CMakeFiles/target/testURL.dir/build.make CMakeFiles/target/testURL.dir/depend
 	$(MAKE) -f CMakeFiles/target/testURL.dir/build.make CMakeFiles/target/testURL.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/machenhui/workspace/compressStatic/build/CMakeFiles  6
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/machenhui/workspace/compressStatic/build/CMakeFiles  7
 	@echo "Built target target/testURL"
 .PHONY : CMakeFiles/target/testURL.dir/all
 

@@ -3,6 +3,11 @@
 
 void removeCharSet(char *filePath,char *outPutPath){
 	FILE *sourceFile = fopen(filePath,"rb");
+	if(sourceFile == NULL){
+			printf("文件打开失败:%d\n",errno);
+			perror("文件打开失败");
+			exit(-1);
+	}
 	int outPutFileDes = open(outPutPath,O_CREAT|O_WRONLY,S_IRWXU);
 	char *buf = malloc(BUFFIZE*sizeof(char));
 	regex_t regex;
@@ -46,7 +51,7 @@ const char** getImportFiles(const char *fileURL,const char* fileName,char *outPu
 	strcpy(outPutFileName,fileName);
 	strcat(outPutFileName,mergeFileName);
 	//int outPutFileDes = open(outPutFileName,O_CREAT|O_WRONLY,S_IRWXU);
-	int outPutFileDes = creat(outPutFileName,O_CREAT|O_WRONLY);
+	int outPutFileDes = creat(outPutFileName,O_CREAT|O_RDWR);
 	//FILE *outPutFile = fopen(outPutFileName,"w+");
 
 	HTTP_URL *url = malloc(sizeof(HTTP_URL));
@@ -86,15 +91,17 @@ const char** getImportFiles(const char *fileURL,const char* fileName,char *outPu
 				strcpy(cssPath1, cssPath);
 				printf("----%s===%s\n",cssPath1,cssPath);
 				char *rs = getHTTPPath(cssPath1, url);
-
+				printf("rs :::: %s\n",rs);
 				//char *contentBuffer = malloc(5*1024*1024);
 				fsync(outPutFileDes);
 
 				memset(contentBuffer,'\0',5*1024*1024);
-
+				//将请求数据写到指定文件中
 				wgetFile(rs,NULL,contentBuffer);
 				//fputs(contentBuffer,outPutFile);
 				printf("长度：%d\n",strlen(contentBuffer));
+				//递归检测 返回的字符串是否还有import
+
 				write(outPutFileDes,contentBuffer,strlen(contentBuffer));
 				write(outPutFileDes,"\n",1);
 				//memset(contentBuffer,'\0',strlen(contentBuffer));
@@ -115,8 +122,10 @@ const char** getImportFiles(const char *fileURL,const char* fileName,char *outPu
 
 	free(buf);
 	//free(row);
+	fsync(outPutFileDes);
     fclose(file);
     close(outPutFileDes);
+    sleep(2);
     char *outPutFileCharSet=".charset.css";
     char *outPutFileCharSetName = malloc(strlen(fileName)+strlen(outPutFileCharSet)+2);
     strcpy(outPutFileCharSetName,fileName);
@@ -178,7 +187,7 @@ const char* hasImport(const char* line){
 	int reti;
 	char msgbuf[100];
 	regmatch_t pmatch[20];
-	printf("===%s===\n",line);
+	//printf("===%s===\n",line);
 	/* Compile regular expression */
 	reti = regcomp(&regex, "@import\\s+url\\(.+\\)", REG_ICASE|REG_NEWLINE|REG_EXTENDED);
 	if (reti) {
@@ -219,6 +228,8 @@ void callClosureStyleSheet(char *fileName,char *outPutPath,char *outPutRenameMap
 	strcat(cmd,"animation-fill-mode ");
 	strcat(cmd," --allowed-unrecognized-property ");
 	strcat(cmd,"-webkit-text-shadow ");
+	strcat(cmd," --allowed-non-standard-function ");
+	strcat(cmd,"color-stop ");
 	strcat(cmd," --output-file ");
 	strcat(cmd,outPutPath);
 	if(outPutRenameMap != NULL){
@@ -240,12 +251,14 @@ int main(int argc,char** argv){
 	char filePath[100];
 	char outPutFile[2000];
 	char *fileURL = argv[1];
+	//char *fileURL = "http://s2.955120.com/css/main.css";
 	char *currentBuffer = malloc(1024*8*1024);
+	printf("文件URL===%s\n",fileURL);
 	wgetFile(fileURL,filePath,currentBuffer);
-	//printf("%s\n",currentBuffer);
+	printf("文件路径===%s\n",filePath);
 
 	getImportFiles(fileURL,filePath,outPutFile);
-	printf("文件名%s\n",outPutFile);
+	printf("输出文件名===%s\n",outPutFile);
 	//printf("文件名%s\n",fileName);
 	//getImportFiles("/tmp/compress/http___s2.120ji.com_css_main.css");
 
@@ -257,7 +270,7 @@ int main(int argc,char** argv){
 	if(argc >=4){
 		outPutRenameMap = argv[3];
 	}
-	callClosureStyleSheet(outPutFile,outputFilePath,outPutRenameMap);
+	callClosureStyleSheet(outPutFile,outputFilePath,NULL);
 	//对生成的文件，做closure-stylesheet的压缩
 
 }

@@ -8,6 +8,7 @@ add_library(loadCSS css/loadCSS.c)
 add_executable(target/readCSS css/readCSS.c)
 add_executable(target/fopen css/fopen.c)
 add_executable(target/testURL css/testURL.c)
+add_executable(target/auto css/auto.c)
 add_library(httpURL css/httpURL.c)
 target_link_libraries(target/readConfig json)
 #这个库是openssl　用的函数库

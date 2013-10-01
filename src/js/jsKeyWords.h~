@@ -1,0 +1,29 @@
+char *keyWords[24] = {
+	"break",
+	"case",
+	"catch",
+	"continue",
+	"default",
+	"delete",
+	"do",
+	"else",
+	"finally",
+	"for",
+	"function",
+	"instanceof",
+	"new",
+	"return",
+	"switch",
+	"this",
+	"throw",
+	"try",
+	"typeof",
+	"var",
+	"vold",
+	"while",
+	"with"
+};
+
+char *operactors = {
+	'+','-','(',')','*','{','}'
+};

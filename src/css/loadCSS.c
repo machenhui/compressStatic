@@ -56,6 +56,7 @@ void wgetFile(const char* fileName,char *filePath,char *contentBuffer){
     //strcat(cmd,getMD5(fileName));
     /*printf("cmd :: %s \n",cmd);
     int rs = system(cmd);*/
+    printf("wgetfile --------\n");
     if(rsStr == NULL){
     	rsStr = malloc(10000*sizeof(char));
     }else{
@@ -66,7 +67,7 @@ void wgetFile(const char* fileName,char *filePath,char *contentBuffer){
     strcat(rsStr,fileNameTmp);
     if(filePath != NULL)
     	strcpy(filePath,rsStr);
-
+    printf("wgetfile before curl --------\n");
     curlGetFile(fileName,filePath,contentBuffer);
 }
 
@@ -106,23 +107,32 @@ static size_t write_callback(char *buffer,
   return size;
 }
 
-CURL *curl;
-CURLcode res;
+
 //给指定的url，将下载的文件，保存到指定的位置
 void curlGetFile(const char* fileURL,char *filePath,char *contentBuffer){
+	printf("in curlFile===%s\n",fileURL);
+	curl_global_init(CURL_GLOBAL_ALL);
+	CURL *curl = curl_easy_init();
+	CURLcode res;
 
-	if(curl == NULL){
+	/*if(curl == NULL){
 		curl = curl_easy_init();
-	}
-
+		printf("初始化curl \n");
+	}else{
+		printf("不初始化curl \n");
+	}*/
+	printf("curlFile===%s\n",fileURL);
+	//写文件
+	URL_FILE *file;
 	if (curl) {
-		printf("===%s\n",fileURL);
+		printf("curlFile===%s\n",fileURL);
 		curl_easy_setopt(curl, CURLOPT_URL, fileURL);
 		/* example.com is redirected, so we tell libcurl to follow redirection */
 		curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
-		//写文件
-		URL_FILE *file;
+
+
 		file = malloc(sizeof(URL_FILE));
+		printf("%d\n",sizeof(URL_FILE));
 		file->buffer_len = 0;
 		file->buffer_pos = 0;
 		//提前给buffer 分配一个空间，否则relloc的时候，出错
@@ -132,54 +142,58 @@ void curlGetFile(const char* fileURL,char *filePath,char *contentBuffer){
 		/* Perform the request, res will get the return code */
 		res = curl_easy_perform(curl);
 		/* Check for errors */
-		if (res != CURLE_OK)
+		if (res != CURLE_OK){
 			fprintf(stderr, "curl_easy_perform() failed: %s\n",curl_easy_strerror(res));
-		if(filePath != NULL){
-			//FILE *outputFile;
-			int fileDes = open(filePath,O_CREAT|O_WRONLY,S_IRWXU);
-			if(fileDes == -1){
-				perror("文件打开异常！");
-			}
-			write(fileDes,file->buffer,file->buffer_len);
-			//free(file->buffer);
-			close(fileDes);
-			//outputFile = fopen(filePath, "w+");
+		}else{
+			if(filePath != NULL){
+						//FILE *outputFile;
+						int fileDes = open(filePath,O_CREAT|O_WRONLY,S_IRWXU);
+						if(fileDes == -1){
+							perror("文件打开异常！");
+						}
+						write(fileDes,file->buffer,file->buffer_len);
+						//free(file->buffer);
+						close(fileDes);
+						//outputFile = fopen(filePath, "w+");
 
-			/*if (outputFile == NULL ) {
-				perror("文件打开失败");
-				free(outputFile);
+						/*if (outputFile == NULL ) {
+							perror("文件打开失败");
+							free(outputFile);
 
-				exit(-1);
-			}
-			fwrite(file->buffer, 1, file->buffer_len, outputFile);
-			free(outputFile);*/
+							exit(-1);
+						}
+						fwrite(file->buffer, 1, file->buffer_len, outputFile);
+						free(outputFile);*/
+					}
+
+			        //file->buffer = "asdlfjasldkj";
+			       // for(;pos<=file->buffer_len;){
+			        	//printf("%s",file->buffer);
+
+			        	if(contentBuffer != NULL){
+
+			        		memcpy(contentBuffer,file->buffer,file->buffer_len);
+			        		free(file->buffer);
+			        		//printf("%s\n",contentBuffer);
+			        	}
+			       // }
+
+
 		}
 
-        //file->buffer = "asdlfjasldkj";
-       // for(;pos<=file->buffer_len;){
-        	//printf("%s",file->buffer);
-
-        	if(contentBuffer != NULL){
-
-        		memcpy(contentBuffer,file->buffer,file->buffer_len);
-        		free(file->buffer);
-        		//printf("%s\n",contentBuffer);
-        	}
-       // }
-
-		/* always cleanup */
-		//curl_easy_cleanup(curl);
-		free(file);
 	}
-
+	/* always cleanup */
+	curl_easy_cleanup(curl);
+	free(file);
+	curl_global_cleanup();
 }
 
-void cleanup(){
+/*void cleanup(){
 	if(curl != NULL){
 		curl_easy_cleanup(curl);
 	}
 
-}
+}*/
 
 const char* getMD5(const char* key){
 	MD5_CTX ctx;

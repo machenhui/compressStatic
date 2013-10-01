@@ -125,6 +125,19 @@ loadCSS/fast:
 .PHONY : loadCSS/fast
 
 #=============================================================================
+# Target rules for targets named target/auto
+
+# Build rule for target.
+target/auto: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 target/auto
+.PHONY : target/auto
+
+# fast build rule for target.
+target/auto/fast:
+	$(MAKE) -f CMakeFiles/target/auto.dir/build.make CMakeFiles/target/auto.dir/build
+.PHONY : target/auto/fast
+
+#=============================================================================
 # Target rules for targets named target/fopen
 
 # Build rule for target.
@@ -175,6 +188,30 @@ target/testURL: cmake_check_build_system
 target/testURL/fast:
 	$(MAKE) -f CMakeFiles/target/testURL.dir/build.make CMakeFiles/target/testURL.dir/build
 .PHONY : target/testURL/fast
+
+css/auto.o: css/auto.c.o
+.PHONY : css/auto.o
+
+# target to build an object file
+css/auto.c.o:
+	$(MAKE) -f CMakeFiles/target/auto.dir/build.make CMakeFiles/target/auto.dir/css/auto.c.o
+.PHONY : css/auto.c.o
+
+css/auto.i: css/auto.c.i
+.PHONY : css/auto.i
+
+# target to preprocess a source file
+css/auto.c.i:
+	$(MAKE) -f CMakeFiles/target/auto.dir/build.make CMakeFiles/target/auto.dir/css/auto.c.i
+.PHONY : css/auto.c.i
+
+css/auto.s: css/auto.c.s
+.PHONY : css/auto.s
+
+# target to generate assembly for a file
+css/auto.c.s:
+	$(MAKE) -f CMakeFiles/target/auto.dir/build.make CMakeFiles/target/auto.dir/css/auto.c.s
+.PHONY : css/auto.c.s
 
 css/fopen.o: css/fopen.c.o
 .PHONY : css/fopen.o
@@ -330,10 +367,14 @@ help:
 	@echo "... httpURL"
 	@echo "... loadCSS"
 	@echo "... rebuild_cache"
+	@echo "... target/auto"
 	@echo "... target/fopen"
 	@echo "... target/readCSS"
 	@echo "... target/readConfig"
 	@echo "... target/testURL"
+	@echo "... css/auto.o"
+	@echo "... css/auto.i"
+	@echo "... css/auto.s"
 	@echo "... css/fopen.o"
 	@echo "... css/fopen.i"
 	@echo "... css/fopen.s"
